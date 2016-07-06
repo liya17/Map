@@ -7,19 +7,92 @@
 //
 
 import UIKit
+import MapKit
+
+//  Anything that conforms to this protocol has to implement a method called dropPinZoomIn(_:)
+protocol HandleMapSearch {
+    func dropPinZoomIn(placemark:MKPlacemark)
+}
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var mapView: MKMapView!
+    
+    let locationManager = CLLocationManager()
+    
+    var resultSearchController:UISearchController? = nil
+    
+    var selectedPin:MKPlacemark? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest // want to override the default accuracy level with an explicit value
+        locationManager.requestWhenInUseAuthorization() // triggers the location permission dialog
+        locationManager.requestLocation() // triggers a one-time location request
+    
+        // locationSearchTable is the Table View Controller
+        let locationSearchTable = storyboard!.instantiateViewControllerWithIdentifier("LocationSearchTable") as! LocationSearchTable
+        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
+        resultSearchController?.searchResultsUpdater = locationSearchTable
+    
+        // configures the search bar and embeds it within the navigation bar
+        let searchBar = resultSearchController!.searchBar
+        searchBar.sizeToFit()
+        searchBar.placeholder = "Search for places"
+        navigationItem.titleView = resultSearchController?.searchBar
+        
+        resultSearchController?.hidesNavigationBarDuringPresentation = false // determines whether the Navigation Bar disappears when the search results are shown. Set this to false, since we want the search bar accessible at all times.
+        resultSearchController?.dimsBackgroundDuringPresentation = true // gives the modal overlay a semi-transparent background when the search bar is selected
+        definesPresentationContext = true // By default, the modal overlay will take up the entire screen, covering the search bar. definesPresentationContext limits the overlap area to just the View Controller’s frame instead of the whole Navigation Controller.
+    
+        locationSearchTable.mapView = mapView // passes along a handle of the mapView from the main View Controller onto the locationSearchTable
+    
+        locationSearchTable.handleMapSearchDelegate = self // The parent (ViewController) passes a handle of itself to the child controller (LocationSearchTable)
     }
+}
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+extension ViewController : CLLocationManagerDelegate {
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) { // called when the user responds to the permission dialog
+        if status == .AuthorizedWhenInUse { // if allowed
+            locationManager.requestLocation() // the first request would have suffered a permission failure
+        }
     }
+    
+    //gets called when location information comes back
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first { // gets an array of locations but only interested in the first one
 
+            //zooming into current location
+            let span = MKCoordinateSpanMake(0.05, 0.05) // zoom level
+            let region = MKCoordinateRegion(center: location.coordinate, span: span)
+            mapView.setRegion(region, animated: true) //defining a map region - combination of the map center (coordinate) and zoon level (span)
+        }
+    }
+    
+    // FOR NOW: just prints out the rror
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print("error:: \(error)")
+    }
+}
 
+extension ViewController: HandleMapSearch {
+    func dropPinZoomIn(placemark:MKPlacemark){ // implements the dropPinZoomIn() method in order to adopt the HandleMapSearch protocol
+        // cache the pin
+        selectedPin = placemark // incoming placemark
+        // clear existing pins
+        mapView.removeAnnotations(mapView.annotations) // clears the map of any existing annotations
+        let annotation = MKPointAnnotation() // map pin that contains a coordinate, title, and subtitle
+        annotation.coordinate = placemark.coordinate // placemark has similar information like a coordinate and address information
+        annotation.title = placemark.name
+        if let city = placemark.locality,
+            let state = placemark.administrativeArea {
+            annotation.subtitle = "\(city) \(state)"
+        }
+        mapView.addAnnotation(annotation) // adds the above annotation to the map.
+        let span = MKCoordinateSpanMake(0.05, 0.05) // specifies a zoom level
+        let region = MKCoordinateRegionMake(placemark.coordinate, span)
+        mapView.setRegion(region, animated: true) // zooms the map to the coordinate
+    }
 }
 
