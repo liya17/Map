@@ -52,9 +52,9 @@ class ViewController: UIViewController {
         locationSearchTable.mapView = mapView // passes along a handle of the mapView from the main View Controller onto the locationSearchTable
     
         locationSearchTable.handleMapSearchDelegate = self // The parent (ViewController) passes a handle of itself to the child controller (LocationSearchTable)
+        
     }
-    
-    
+   
 }
 
 extension ViewController : CLLocationManagerDelegate {
@@ -79,6 +79,11 @@ extension ViewController : CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         print("error:: \(error)")
     }
+    
+    func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        print("hello")
+    }
+    
 }
 
 extension ViewController: HandleMapSearch {
@@ -99,6 +104,14 @@ extension ViewController: HandleMapSearch {
         let span = MKCoordinateSpanMake(0.05, 0.05) // specifies a zoom level
         let region = MKCoordinateRegionMake(placemark.coordinate, span)
         mapView.setRegion(region, animated: true) // zooms the map to the coordinate
+        
+        let regionIdentifier = placemark.name ?? "no name"
+//        var makeSchoolCoord = CLLocationCoordinate2DMake(40.7184243, -74.004693)
+        
+        //805 is 1/2 a mile
+        var makeSchoolRegion = CLCircularRegion(center: placemark.coordinate, radius: 805, identifier: regionIdentifier)
+        
+        locationManager.startMonitoringForRegion(makeSchoolRegion)
     }
 }
 
