@@ -13,8 +13,8 @@ class LocationSearchTable : UITableViewController {
     
     var matchingItems:[MKMapItem] = [] // use this later on to stash search results for easy access
     var mapView: MKMapView? = nil // Search queries rely on a map region to prioritize local results. The mapView variable is a handle to the map from the previous screen
-
     var handleMapSearchDelegate:HandleMapSearch? = nil
+    
 }
 
 extension LocationSearchTable : UISearchResultsUpdating {
@@ -82,7 +82,7 @@ extension LocationSearchTable {
 extension LocationSearchTable {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let selectedItem = matchingItems[indexPath.row].placemark // When a search result row is selected, you find the appropriate placemark based on the row number
-        handleMapSearchDelegate?.dropPinZoomIn(selectedItem) // pass the placemark to the map controller via the custom protocol method
+        handleMapSearchDelegate?.dropPinZoomIn(selectedItem) // pass the placemark to the map via the custom protocol method
         dismissViewControllerAnimated(true, completion: nil) // close the search results modal so the user can see the map
     }
 }

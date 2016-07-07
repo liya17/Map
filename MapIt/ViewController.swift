@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
 //  Anything that conforms to this protocol has to implement a method called dropPinZoomIn(_:)
 protocol HandleMapSearch {
@@ -23,6 +24,8 @@ class ViewController: UIViewController {
     var resultSearchController:UISearchController? = nil
     
     var selectedPin:MKPlacemark? = nil
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +53,8 @@ class ViewController: UIViewController {
     
         locationSearchTable.handleMapSearchDelegate = self // The parent (ViewController) passes a handle of itself to the child controller (LocationSearchTable)
     }
+    
+    
 }
 
 extension ViewController : CLLocationManagerDelegate {
@@ -81,7 +86,7 @@ extension ViewController: HandleMapSearch {
         // cache the pin
         selectedPin = placemark // incoming placemark
         // clear existing pins
-        mapView.removeAnnotations(mapView.annotations) // clears the map of any existing annotations
+        //mapView.removeAnnotations(mapView.annotations) // clears the map of any existing annotations
         let annotation = MKPointAnnotation() // map pin that contains a coordinate, title, and subtitle
         annotation.coordinate = placemark.coordinate // placemark has similar information like a coordinate and address information
         annotation.title = placemark.name
@@ -89,6 +94,7 @@ extension ViewController: HandleMapSearch {
             let state = placemark.administrativeArea {
             annotation.subtitle = "\(city) \(state)"
         }
+        
         mapView.addAnnotation(annotation) // adds the above annotation to the map.
         let span = MKCoordinateSpanMake(0.05, 0.05) // specifies a zoom level
         let region = MKCoordinateRegionMake(placemark.coordinate, span)
