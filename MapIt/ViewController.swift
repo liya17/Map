@@ -16,7 +16,7 @@ protocol HandleMapSearch {
 }
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var mapView: MKMapView!
     
     let locationManager = CLLocationManager()
@@ -24,8 +24,6 @@ class ViewController: UIViewController {
     var resultSearchController:UISearchController? = nil
     
     var selectedPin:MKPlacemark? = nil
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,18 +98,65 @@ extension ViewController: HandleMapSearch {
             annotation.subtitle = "\(city) \(state)"
         }
         
+        //let button = UIButton()
         mapView.addAnnotation(annotation) // adds the above annotation to the map.
+        //button.setTitle(name, forState: .Normal)
+        
         let span = MKCoordinateSpanMake(0.05, 0.05) // specifies a zoom level
         let region = MKCoordinateRegionMake(placemark.coordinate, span)
         mapView.setRegion(region, animated: true) // zooms the map to the coordinate
         
-        let regionIdentifier = placemark.name ?? "no name"
-//        var makeSchoolCoord = CLLocationCoordinate2DMake(40.7184243, -74.004693)
         
-        //805 is 1/2 a mile
-        var makeSchoolRegion = CLCircularRegion(center: placemark.coordinate, radius: 805, identifier: regionIdentifier)
+        /* GEOFENCING
+         
+        let regionIdentifier = placemark.name ?? "no name"
+        // var makeSchoolCoord = CLLocationCoordinate2DMake(40.7184243, -74.004693)
+        
+        // 805 is 1/2 a mile
+        var makeSchoolRegion = CLCircularRegion(center: placemark.coordinate, radius: 200, identifier: regionIdentifier)
         
         locationManager.startMonitoringForRegion(makeSchoolRegion)
+        
+         */
+        
+//        let button = UIButton(type: UIButtonType.Custom)
+//        button.imageView?.image = UIImage(named: "info.jpg")
+//        var annotationView: MKAnnotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "annotation")
+//        annotationView.rightCalloutAccessoryView = button
+//        annotationView.addSubview(button)
     }
 }
 
+extension ViewController: MKMapViewDelegate{
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+
+    }
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        var view = mapView.dequeueReusableAnnotationViewWithIdentifier("AnnotationView Id")
+        if let annotation = annotation as? MKUserLocation{
+            return nil
+        }
+        if view == nil{
+            view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "AnnotationView Id")
+            view!.canShowCallout = true
+        } else {
+            view!.annotation = annotation
+        }
+        
+        view?.leftCalloutAccessoryView = nil
+        view?.rightCalloutAccessoryView = UIButton(type: UIButtonType.DetailDisclosure)
+        //swift 1.2
+        //view?.rightCalloutAccessoryView = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
+        
+        return view
+    }
+    
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+  
+        if (control as? UIButton)?.buttonType == UIButtonType.DetailDisclosure {
+            mapView.deselectAnnotation(view.annotation, animated: false)
+            performSegueWithIdentifier("nextViewController", sender: view)
+            
+        }
+    }
+}
