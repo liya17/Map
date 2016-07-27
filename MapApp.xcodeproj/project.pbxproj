@@ -16,7 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8DD9EB3B1D2C494D00FCDDB8 /* MapIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8DD9EB3B1D2C494D00FCDDB8 /* MapApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DD9EB3E1D2C494D00FCDDB8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DD9EB401D2C494D00FCDDB8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8DD9EB431D2C494D00FCDDB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -40,7 +40,7 @@
 		8DD9EB321D2C494D00FCDDB8 = {
 			isa = PBXGroup;
 			children = (
-				8DD9EB3D1D2C494D00FCDDB8 /* MapIt */,
+				8DD9EB3D1D2C494D00FCDDB8 /* MapApp */,
 				8DD9EB3C1D2C494D00FCDDB8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -48,12 +48,12 @@
 		8DD9EB3C1D2C494D00FCDDB8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8DD9EB3B1D2C494D00FCDDB8 /* MapIt.app */,
+				8DD9EB3B1D2C494D00FCDDB8 /* MapApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8DD9EB3D1D2C494D00FCDDB8 /* MapIt */ = {
+		8DD9EB3D1D2C494D00FCDDB8 /* MapApp */ = {
 			isa = PBXGroup;
 			children = (
 				8DD9EB3E1D2C494D00FCDDB8 /* AppDelegate.swift */,
@@ -64,15 +64,16 @@
 				8DD9EB4A1D2C494D00FCDDB8 /* Info.plist */,
 				8DD9EB501D2C76E900FCDDB8 /* LocationSearchTable.swift */,
 			);
+			name = MapApp;
 			path = MapIt;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8DD9EB3A1D2C494D00FCDDB8 /* MapIt */ = {
+		8DD9EB3A1D2C494D00FCDDB8 /* MapApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8DD9EB4D1D2C494D00FCDDB8 /* Build configuration list for PBXNativeTarget "MapIt" */;
+			buildConfigurationList = 8DD9EB4D1D2C494D00FCDDB8 /* Build configuration list for PBXNativeTarget "MapApp" */;
 			buildPhases = (
 				8DD9EB371D2C494D00FCDDB8 /* Sources */,
 				8DD9EB381D2C494D00FCDDB8 /* Frameworks */,
@@ -82,9 +83,9 @@
 			);
 			dependencies = (
 			);
-			name = MapIt;
+			name = MapApp;
 			productName = MapIt;
-			productReference = 8DD9EB3B1D2C494D00FCDDB8 /* MapIt.app */;
+			productReference = 8DD9EB3B1D2C494D00FCDDB8 /* MapApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -103,7 +104,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 8DD9EB361D2C494D00FCDDB8 /* Build configuration list for PBXProject "MapIt" */;
+			buildConfigurationList = 8DD9EB361D2C494D00FCDDB8 /* Build configuration list for PBXProject "MapApp" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -116,7 +117,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8DD9EB3A1D2C494D00FCDDB8 /* MapIt */,
+				8DD9EB3A1D2C494D00FCDDB8 /* MapApp */,
 			);
 		};
 /* End PBXProject section */
@@ -258,8 +259,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MapIt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.makeschool.MapIt;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.makeschool.MapLW;
+				PRODUCT_NAME = MapApp;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
@@ -272,8 +273,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MapIt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.makeschool.MapIt;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.makeschool.MapLW;
+				PRODUCT_NAME = MapApp;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
@@ -281,7 +282,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8DD9EB361D2C494D00FCDDB8 /* Build configuration list for PBXProject "MapIt" */ = {
+		8DD9EB361D2C494D00FCDDB8 /* Build configuration list for PBXProject "MapApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8DD9EB4B1D2C494D00FCDDB8 /* Debug */,
@@ -290,7 +291,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8DD9EB4D1D2C494D00FCDDB8 /* Build configuration list for PBXNativeTarget "MapIt" */ = {
+		8DD9EB4D1D2C494D00FCDDB8 /* Build configuration list for PBXNativeTarget "MapApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8DD9EB4E1D2C494D00FCDDB8 /* Debug */,

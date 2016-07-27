@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:MapIt.xcodeproj">
+      location = "self:/Users/2017liyaw/Desktop/MS/MapIt/MapApp.xcodeproj">
    </FileRef>
 </Workspace>

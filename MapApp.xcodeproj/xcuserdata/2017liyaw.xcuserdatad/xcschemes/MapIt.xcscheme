@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8DD9EB3A1D2C494D00FCDDB8"
-               BuildableName = "MapIt.app"
-               BlueprintName = "MapIt"
-               ReferencedContainer = "container:MapIt.xcodeproj">
+               BuildableName = "MapApp.app"
+               BlueprintName = "MapApp"
+               ReferencedContainer = "container:MapApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8DD9EB3A1D2C494D00FCDDB8"
-            BuildableName = "MapIt.app"
-            BlueprintName = "MapIt"
-            ReferencedContainer = "container:MapIt.xcodeproj">
+            BuildableName = "MapApp.app"
+            BlueprintName = "MapApp"
+            ReferencedContainer = "container:MapApp.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8DD9EB3A1D2C494D00FCDDB8"
-            BuildableName = "MapIt.app"
-            BlueprintName = "MapIt"
-            ReferencedContainer = "container:MapIt.xcodeproj">
+            BuildableName = "MapApp.app"
+            BlueprintName = "MapApp"
+            ReferencedContainer = "container:MapApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8DD9EB3A1D2C494D00FCDDB8"
-            BuildableName = "MapIt.app"
-            BlueprintName = "MapIt"
-            ReferencedContainer = "container:MapIt.xcodeproj">
+            BuildableName = "MapApp.app"
+            BlueprintName = "MapApp"
+            ReferencedContainer = "container:MapApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

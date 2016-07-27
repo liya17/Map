@@ -15,7 +15,7 @@ protocol HandleMapSearch {
     func dropPinZoomIn(placemark:MKPlacemark)
 }
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITabBarDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
     
@@ -144,13 +144,14 @@ extension ViewController: MKMapViewDelegate{
         }
         
         view?.leftCalloutAccessoryView = nil
-        view?.rightCalloutAccessoryView = UIButton(type: UIButtonType.DetailDisclosure)
+        view?.rightCalloutAccessoryView = UIButton(type: UIButtonType.DetailDisclosure) //info button
         //swift 1.2
         //view?.rightCalloutAccessoryView = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
         
         return view
     }
     
+    //segue from annotaion info button to annotation view controller
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
   
         if (control as? UIButton)?.buttonType == UIButtonType.DetailDisclosure {
