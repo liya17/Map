@@ -126,7 +126,7 @@ extension ViewController: HandleMapSearch {
 //        annotationView.addSubview(button)
     }
 }
-
+/*
 extension ViewController: MKMapViewDelegate{
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
 
@@ -160,4 +160,4 @@ extension ViewController: MKMapViewDelegate{
             
         }
     }
-}
+}*/
